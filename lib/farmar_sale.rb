@@ -1,13 +1,13 @@
-require_relative '../far_mar.rb'
+# require_relative '../far_mar.rb'
 
 
 
 class FarMar::Sales
 
-  attr_reader :id
+  attr_reader :sale_id, :vendor_id, :product_id, :sale_amt
 
-  def initialize(id, sale_amt, date_time, vendor_id, product_id)
-    @id = id
+  def initialize(sale_id, sale_amt, date_time, vendor_id, product_id)
+    @sale_id = sale_id
     @sale_amt = sale_amt
     @date_time = date_time
     @vendor_id = vendor_id
@@ -18,14 +18,14 @@ class FarMar::Sales
     sale_list = []
 
     CSV.open('./support/sales.csv', 'r').each do |row|
-      id = row[0].to_i
-      sale_amt = row[1]
+      sale_id = row[0].to_i
+      sale_amt = row[1].to_i
       date_time = row[2]
       vendor_id = row[3].to_i
       product_id = row[4].to_i
 
 
-      sale_list << self.new(id, sale_amt, date_time, vendor_id, product_id)
+      sale_list << self.new(sale_id, sale_amt, date_time, vendor_id, product_id)
     end
     return sale_list
   end
@@ -35,7 +35,7 @@ class FarMar::Sales
     sale_list = FarMar::Sales.all
 
     sale_list.each do |sale|
-      if sale.id == id
+      if sale.sale_id == id
         return sale
       end
     end

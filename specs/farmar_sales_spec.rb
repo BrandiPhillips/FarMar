@@ -1,6 +1,6 @@
 
 require_relative 'Spec_helper'
-require_relative '../lib/farmar_sale'
+require_relative '../far_mar.rb'
 
 describe 'Testing FarMar::Sales.all' do
   let(:sale_list) {FarMar::Sales.all}
@@ -21,7 +21,7 @@ describe 'Testing FarMar::Sales.find(id)' do
   let(:sale3) {FarMar::Sales.find(128000)}
 
   it "must include an id matching the argument given" do
-    expect sale.id.must_equal  268
+    expect sale.sale_id.must_equal  268
   end
 
   it "must raise an error if object entered as argument is not a fixnum" do

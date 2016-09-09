@@ -1,13 +1,13 @@
-require_relative '../far_mar.rb'
+# require_relative '../far_mar.rb'
 
 
 
 class FarMar::Products
   # extend FarMar
-  attr_reader :id
+  attr_reader :product_id, :vendor_id
 
-  def initialize(id, product_name, vendor_id)
-    @id = id
+  def initialize(product_id, product_name, vendor_id)
+    @product_id = product_id
     @product_name = product_name
     @vendor_id = vendor_id
   end
@@ -16,12 +16,12 @@ class FarMar::Products
     product_list = []
 
     CSV.open('./support/products.csv', 'r').each do |row|
-      id = row[0].to_i
+      product_id = row[0].to_i
       product_name = row[1]
       vendor_id = row[2].to_i
 
 
-      product_list << self.new(id, product_name, vendor_id)
+      product_list << self.new(product_id, product_name, vendor_id)
     end
     return product_list
   end
@@ -31,7 +31,7 @@ class FarMar::Products
     product_list = FarMar::Products.all
 
     product_list.each do |product|
-      if product.id == id
+      if product.product_id == id
         return product
       end
     end

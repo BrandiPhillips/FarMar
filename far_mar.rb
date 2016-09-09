@@ -44,3 +44,22 @@ require_relative 'lib/farmar_market'
 require_relative 'lib/farmar_product'
 require_relative 'lib/farmar_vendors'
 require_relative 'lib/farmar_sale'
+
+# markets = FarMar::Market.all
+# # find one of the markets
+#  puts local_market = FarMar::Market.find(250)
+#
+#  puts local_market.vendors.inspect
+
+ # a_market = FarMar::Market.new(markets[5])
+ # puts a_market
+#
+# vendors = FarMar::Vendors.all
+# # puts vendors[5].market_id
+# # puts vendors[20].market_id
+# # puts vendors[5].inspect
+# vendor = FarMar::Vendors.find(65)
+# puts vend_market = vendor.market.inspect
+# puts vend_prod = vendor.products.inspect
+# puts vend_sales = vendor.sales.inspect
+# puts vend_revenue = vend_sales.revenue
