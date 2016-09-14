@@ -33,3 +33,20 @@ describe 'Testing FarMar::Sales.find(id)' do
   end
 
 end
+
+describe 'testing the FarMar::Sales methods' do
+  let(:sale) {FarMar::Sales.find(268)}
+  let(:sale_vendor) {sale.vendor}
+  let(:sale_product) {sale.product}
+
+  # vendor method
+  it "must return a vendor with a matching vendor id as the sale vendor id" do
+    expect sale_vendor.must_equal 58
+  end
+
+  # product method
+  it "must return a product id matching that of the sale product id" do
+    expect sale_product.must_equal 187
+  end
+
+end

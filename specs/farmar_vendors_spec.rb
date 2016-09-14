@@ -16,7 +16,6 @@ end
 
 describe 'Testing FarMar::Vendors.find(id)' do
   let(:vendor) {FarMar::Vendors.find(65)}
-  let(:vendor2) {FarMar::Vendors.find("three")}
   let(:vendor3) {FarMar::Vendors.find(2695)}
 
   it "must include an id matching the argument given" do
@@ -33,6 +32,24 @@ describe 'Testing FarMar::Vendors.find(id)' do
 
 end
 
+describe 'Test FarMar::Vendors.by_market ' do
+  let(:vendors) {FarMar::Vendors.by_market(50)}
+  let(:vendors3) {FarMar::Vendors.by_market(600)}
+
+  it "must return an array if markets id is valid" do
+    expect vendors.must_be_kind_of Array
+  end
+
+  it "must raise an error if object entered as argument is not a fixnum" do
+    expect (proc {FarMar::Vendors.by_market("three")} ).must_raise ArgumentError
+  end
+
+  it "must be a valid id found in the vendor list" do
+   expect vendors3.must_equal "not a valid market id"
+  end
+
+end
+
 describe 'testing the FarMar::Vendors methods' do
   let(:vendor) {FarMar::Vendors.find(65)}
   let(:vend_market) {vendor.market}
@@ -40,10 +57,9 @@ describe 'testing the FarMar::Vendors methods' do
   let(:vend_sales) {vendor.sales}
   let(:vend_revenue) {vendor.revenue}
 
-
   # market method
-  it "must return a market with a matching market id as the market id in the vendor data" do
-    expect vend_market.market_id.must_equal 14
+  it "must return a valid market id" do
+    expect vend_market.must_equal 14
   end
   # product method
   it "must return an array of products for .products" do

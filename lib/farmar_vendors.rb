@@ -31,7 +31,6 @@ class FarMar::Vendors
   def self.find(id)
     raise ArgumentError if id.class != Fixnum
     vendor_list = FarMar::Vendors.all
-
     vendor_list.each do |vendor|
       if vendor.vendor_id == id
         return vendor
@@ -40,15 +39,22 @@ class FarMar::Vendors
     return "Not a valid id"
   end
 
- # we are assuming there is only one market per vendor however, in reality vendors more than likely will attend multiple markets.  could be easily changed by having this return an array of markets like the vendor method in market class...  These methods are so similar, I feel like they could be created in module in a more general fashion and then extended into the classes...
-  def market
-    market_list = FarMar::Market.all
-
-    market_list.each do |market|
-      if market.market_id == @market_id
-        return market
+  def self.by_market(market_id)
+    raise ArgumentError if market_id.class != Fixnum
+    vendor_list = FarMar::Vendors.all
+    vendors_by_market = []
+    vendor_list.each do |vendor|
+      if vendor.market_id == market_id
+        vendors_by_market << vendor
+      else
+        return "not a valid market id"
       end
+      return vendors_by_market
     end
+  end
+
+  def market
+    return self.market_id
   end
 
   def products

@@ -42,6 +42,15 @@ class FarMar::Sales
     return "Not a valid id"
   end
 
+  def product
+    return self.product_id
+  end
+
+  def vendor
+    return self.vendor_id
+  end
+
+
 end
 
 #print FarMar::Sales.all
